@@ -312,6 +312,16 @@ class UserDAO {
 
 }
 
+class UserService{
+    private UserDAO userDAO = new UserDAO();
+    public void registerUser (User user) {
+        if (user.getUserName() == null || user.getUserName().isEmpty()) {
+            throw new IllegalArgumentException ("Username is null or empty");
+        }
+        userDAO.saveUser (user);
+    }
+}
+
 
 public class Main {
     public static void main(String[] args) {
@@ -391,14 +401,14 @@ public class Main {
         Stock apple = new Stock("AAPL", "Apple", "150.00", StockType.COMMON);
         platform.addStock(apple);
         User  d = new User("Alice", "100000.00");
-        platform.registerUser(d);
+//        platform.registerUser(d);
         System.out.println("Buying Test ");
 //       platform.buyStock("Alice" , "AAPL" , 2 );
-        UserDAO checkDao = new UserDAO();
+        UserService userService = new UserService();
 
-        User dbAlice = checkDao.getUser("Alice");
-        System.out.println("Alice Balance in DB: " + dbAlice.getCashBalance());
-        System.out.println("Alice Portfolio: " + dbAlice.getPortfolio());
+        userService.registerUser(d);
+        System.out.println("Alice Balance in DB: " + d.getCashBalance());
+        System.out.println("Alice Portfolio: " + d.getPortfolio());
         User testUser = new User("Bob", "500.00");
         UserDAO dao = new UserDAO();
         dao.deleteUser(testUser);
