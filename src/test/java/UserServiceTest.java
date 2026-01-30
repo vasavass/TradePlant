@@ -3,6 +3,7 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
+import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 
@@ -22,5 +23,19 @@ class UserServiceTest {
 
         });
 
+    }
+
+    @Test
+    void shouldSaveUserWhenDataIsValid(){
+        User bob = new User("Bob", "100");
+        userService.registerUser(bob);
+        Mockito.verify(userDAO, Mockito.times(1)).saveUser(bob);
+    }
+    @Test
+    void shouldReturnUserWhenFound(){
+        User expectedUser = new User("Alice" , "500");
+        Mockito.when(userDAO.getUser("Alice")).thenReturn(expectedUser);
+        User actualUser = userService.getUser("Alice");
+        Assertions.assertEquals(expectedUser, actualUser);
     }
 }

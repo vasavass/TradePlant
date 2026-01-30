@@ -320,6 +320,10 @@ class UserService{
         }
         userDAO.saveUser (user);
     }
+    public User getUser(String username){
+        userDAO.getUser(username);
+        return userDAO.getUser(username);
+    }
 }
 
 
