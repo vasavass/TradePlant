@@ -137,7 +137,10 @@ class User{
     class TradePlant{
         private Map<String , Stock> data = new HashMap<>();
 //        private Map<String , User> reguser = new HashMap<>();
-        private UserDAO userDAO = new UserDAO();
+        private UserDAO userDAO;
+        public TradePlant(UserDAO userDAO){
+            this.userDAO = userDAO;
+        }
 
         public void registerUser (User user){
             userDAO.saveUser(user);
@@ -313,7 +316,10 @@ class UserDAO {
 }
 
 class UserService{
-    private UserDAO userDAO = new UserDAO();
+    private UserDAO userDAO;
+    public UserService(UserDAO userDAO) {
+        this.userDAO = userDAO;
+    }
     public void registerUser (User user) {
         if (user.getUserName() == null || user.getUserName().isEmpty()) {
             throw new IllegalArgumentException ("Username is null or empty");
@@ -321,7 +327,6 @@ class UserService{
         userDAO.saveUser (user);
     }
     public User getUser(String username){
-        userDAO.getUser(username);
         return userDAO.getUser(username);
     }
 }
@@ -401,14 +406,15 @@ public class Main {
 //            System.out.println("SQLException: " + e.getMessage());
 //            System.out.println("SQLState: " + e.getSQLState());
 //        }
-        TradePlant platform = new TradePlant();
+        UserDAO dao1 = new UserDAO();
+        TradePlant platform = new TradePlant(dao1);
         Stock apple = new Stock("AAPL", "Apple", "150.00", StockType.COMMON);
         platform.addStock(apple);
         User  d = new User("Alice", "100000.00");
 //        platform.registerUser(d);
         System.out.println("Buying Test ");
 //       platform.buyStock("Alice" , "AAPL" , 2 );
-        UserService userService = new UserService();
+        UserService userService = new UserService(dao1);
 
         userService.registerUser(d);
         System.out.println("Alice Balance in DB: " + d.getCashBalance());
