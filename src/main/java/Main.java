@@ -1,3 +1,6 @@
+import lombok.AllArgsConstructor;
+import lombok.Data;
+
 import java.math.BigDecimal;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -5,56 +8,15 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.*;
 
+@Data
+@AllArgsConstructor
 class Stock {
     private String symbol;
     private String companyName;
     private BigDecimal currentPrice;
     private StockType type;
 
-    public Stock(String symbol, String companyName, String currentPrice, StockType type) {
-        this.symbol = symbol;
-        this.companyName = companyName;
-        this.currentPrice = new BigDecimal(currentPrice);
-        this.type = type;
 
-    }
-
-    public String getSymbol() {
-        return symbol;
-    }
-
-    public void setSymbol(String symbol) {
-        this.symbol = symbol;
-    }
-
-    public String getCompanyName() {
-        return companyName;
-    }
-
-    public void setCompanyName(String companyName) {
-        this.companyName = companyName;
-    }
-
-    public StockType  getType() {
-        return type;
-    }
-
-    public void setType(StockType type) {
-        this.type = type;
-    }
-
-    public BigDecimal getCurrentPrice() {
-        return currentPrice;
-    }
-
-    public void setCurrentPrice(BigDecimal currentPrice) {
-        this.currentPrice = currentPrice;
-    }
-
-    @Override
-    public String toString() {
-        return symbol + " " + companyName + " " + currentPrice + "$" + type;
-    }
 }
 
 class User{
@@ -408,7 +370,7 @@ public class Main {
 //        }
         UserDAO dao1 = new UserDAO();
         TradePlant platform = new TradePlant(dao1);
-        Stock apple = new Stock("AAPL", "Apple", "150.00", StockType.COMMON);
+        Stock apple = new Stock("AAPL", "Apple",new BigDecimal("150.00"), StockType.COMMON);
         platform.addStock(apple);
         User  d = new User("Alice", "100000.00");
 //        platform.registerUser(d);
