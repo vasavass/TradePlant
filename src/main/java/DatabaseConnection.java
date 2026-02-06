@@ -22,7 +22,7 @@ public class DatabaseConnection {
 
 
                 URL = prop.getProperty("db.url");
-                USER = prop.getProperty("db.user");;
+                USER = prop.getProperty("db.user");
                 PASSWORD = prop.getProperty("db.password");
             }
         } catch (IOException ex) {

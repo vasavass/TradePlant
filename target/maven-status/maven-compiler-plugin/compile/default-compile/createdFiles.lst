@@ -1,5 +1,9 @@
+Main.class
 StockType.class
+UserService.class
 DatabaseConnection.class
-InsufficientFundsException.class
-Stock.class
 User.class
+UserDAO.class
+InsufficientFundsException.class
+TradePlant.class
+Stock.class
