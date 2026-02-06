@@ -18,7 +18,7 @@ class TradePlantTest {
     @Test
     void shouldDecreaseBalanceWhenBuying() {
         User alice = new User("Alice", "1000");
-        Stock aple = new Stock("AAPL", "APLE" ,"150",StockType.COMMON);
+        Stock aple = new Stock("AAPL", "APLE" ,new BigDecimal("150"),StockType.COMMON);
 
         tradePlant.addStock(aple);
 
