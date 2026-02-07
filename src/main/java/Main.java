@@ -1,6 +1,6 @@
 import lombok.AllArgsConstructor;
 import lombok.Data;
-
+import com.fasterxml.jackson.databind.ObjectMapper;
 import java.math.BigDecimal;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -390,7 +390,9 @@ public class Main {
         User loadedUser = dao.getUser("Bob");
         loadedUser.deposit(new BigDecimal("100.00"));
         dao.updateUser(loadedUser);
-        dao.deleteUser(loadedUser);
+        loadedUser.addPortfolio("TSLA", 5);
+        loadedUser.addPortfolio("AMZN", 10);
+//        dao.deleteUser(loadedUser);
         User ghost = dao.getUser("Bob");
         if (ghost == null) {
             System.out.println("User "  + " gone");
@@ -406,7 +408,19 @@ public class Main {
 //        else {
 //            System.out.println("User not found");
 //        }
+        System.out.println("\nJSON TEST");
+        try {
 
+            ObjectMapper mapper = new ObjectMapper();
+
+            String jsonOutput = mapper.writeValueAsString(loadedUser);
+
+            System.out.println("Java Object: " + loadedUser);
+            System.out.println("JSON Result: " + jsonOutput);
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
     }
 }
