@@ -1,7 +1,12 @@
+import com.sun.net.httpserver.HttpServer;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import com.fasterxml.jackson.databind.ObjectMapper;
+
+import java.io.IOException;
+import java.io.OutputStream;
 import java.math.BigDecimal;
+import java.net.InetSocketAddress;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -419,6 +424,35 @@ public class Main {
             System.out.println("JSON Result: " + jsonOutput);
 
         } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        try{
+            HttpServer server = HttpServer.create(new InetSocketAddress(8082), 0);
+            server.createContext("/api/user", exchange -> {
+                User realUser = dao1.getUser("Alice");
+                String response = "";
+                int statusCode = 200;
+                if (realUser != null) {
+                    ObjectMapper mapper = new ObjectMapper();
+                    response = mapper.writeValueAsString(realUser);
+                }
+                else {
+                    response = "{\"statusCode\":" + statusCode + "}";
+                    statusCode = 404;
+                }
+                exchange.getResponseHeaders().set("Content-Type", "application/json");
+                exchange.sendResponseHeaders(statusCode, response.length());
+
+                OutputStream os = exchange.getResponseBody();
+                os.write(response.getBytes());
+                os.close();
+            });
+            server.setExecutor(null);
+            server.start();
+            System.out.println("Server is running on http://localhost:8082/api/user");
+        }
+        catch (IOException e){
             e.printStackTrace();
         }
 
