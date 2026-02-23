@@ -1,17 +1,24 @@
 package tradeplant;
 
+import org.springframework.stereotype.Service;
+
+@Service
 public class UserService {
-    private UserDAO userDAO;
-    public UserService(UserDAO userDAO) {
-        this.userDAO = userDAO;
+
+    private final UserRepository userRepository;
+
+    public UserService(UserRepository userRepository) {
+        this.userRepository = userRepository;
     }
-    public void registerUser (User user) {
+
+    public void registerUser(User user) {
         if (user.getUserName() == null || user.getUserName().isEmpty()) {
-            throw new IllegalArgumentException ("Username is null or empty");
+            throw new IllegalArgumentException("Username is null or empty");
         }
-        userDAO.saveUser (user);
+        userRepository.save(user);
     }
-    public User getUser(String username){
-        return userDAO.getUser(username);
+
+    public User getUser(String username) {
+        return userRepository.findById(username).orElse(null);
     }
 }

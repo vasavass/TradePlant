@@ -1,16 +1,28 @@
 package tradeplant;
 
+import jakarta.persistence.ElementCollection;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Table;
+import jakarta.persistence.Id;
+
 import java.math.BigDecimal;
 import java.util.HashMap;
 import java.util.Map;
 
+
+@Entity
+@Table(name = "users")
 public class User {
+    @Id
     private String userName;
     private BigDecimal cashBalance;
+    @ElementCollection
     private Map<String , Integer> portfolio = new HashMap<>();
     public User(String userName, String cashBalance ){
         this.userName = userName;
         this.cashBalance = new BigDecimal(cashBalance);
+    }
+    protected User() {
     }
 
     public String getUserName() {

@@ -1,10 +1,15 @@
+C:\Users\argon\Desktop\VGTU\Java\Program2\src\main\java\tradeplant\AppConfig.java
 C:\Users\argon\Desktop\VGTU\Java\Program2\src\main\java\tradeplant\DatabaseConnection.java
+C:\Users\argon\Desktop\VGTU\Java\Program2\src\main\java\tradeplant\ExternalStockDTO.java
+C:\Users\argon\Desktop\VGTU\Java\Program2\src\main\java\tradeplant\InsufficientFundsException.java
 C:\Users\argon\Desktop\VGTU\Java\Program2\src\main\java\tradeplant\Main.java
 C:\Users\argon\Desktop\VGTU\Java\Program2\src\main\java\tradeplant\Stock.java
 C:\Users\argon\Desktop\VGTU\Java\Program2\src\main\java\tradeplant\StockType.java
 C:\Users\argon\Desktop\VGTU\Java\Program2\src\main\java\tradeplant\TradeController.java
 C:\Users\argon\Desktop\VGTU\Java\Program2\src\main\java\tradeplant\TradePlant.java
 C:\Users\argon\Desktop\VGTU\Java\Program2\src\main\java\tradeplant\TradePlantApplication.java
+C:\Users\argon\Desktop\VGTU\Java\Program2\src\main\java\tradeplant\TradeRequest.java
 C:\Users\argon\Desktop\VGTU\Java\Program2\src\main\java\tradeplant\User.java
 C:\Users\argon\Desktop\VGTU\Java\Program2\src\main\java\tradeplant\UserDAO.java
+C:\Users\argon\Desktop\VGTU\Java\Program2\src\main\java\tradeplant\UserRepository.java
 C:\Users\argon\Desktop\VGTU\Java\Program2\src\main\java\tradeplant\UserService.java

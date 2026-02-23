@@ -1,0 +1,12 @@
+### Запрос 1: Проверка баланса
+GET http://localhost:8080/api/user?name=Alice
+
+### Запрос 2: Покупка акций
+POST http://localhost:8080/api/buy
+Content-Type: application/json
+
+{
+  "user" : "Alice",
+  "stock": "FAKECOIN",
+  "qty": 1
+}
