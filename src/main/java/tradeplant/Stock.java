@@ -6,7 +6,7 @@ import java.math.BigDecimal;
 
 @Data
 @AllArgsConstructor
-public class Stock { // <--- ДОБАВЬ PUBLIC
+public class Stock { 
     private String symbol;
     private String companyName;
     private BigDecimal currentPrice;
